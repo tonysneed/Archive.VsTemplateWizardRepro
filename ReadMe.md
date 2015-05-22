@@ -31,3 +31,11 @@ Here are the steps I took to reproduct the issue:
     + Newly created app DID have packages installed for VS2013.
     + Newly created app DID NOT have packages installed for VS2015RC.
 
+7. To correct this problem, it is necessary to remove packages.config
+   from the project template, and from csproj and vstemplate files.
+   - Also remove references to package DLL's from the csproj file.
+   - Re-zipped SomeApp-NuGetWizard.zip and replaced it in the ProjectTemplates
+     folder of the Deploy project, then built to regenerate VSIX file.
+	 + Uninstalled prior version then reinstalled VSIX, retarting Visual Studio.
+   - Packages.config and package references will be added to new projects
+     created using the project template.
