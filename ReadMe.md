@@ -16,14 +16,14 @@ Here are the steps I took to reproduct the issue:
   - Include in VSIX is set to True
   - Set target version range for VS 2013 or greater
 
-4. Modified the vstemplate file in the VS template zip file to add Json.Net
+3. Modified the vstemplate file in the VS template zip file to add Json.Net
   - Added <WizardExtension> and <WizardData> sections to the file
   - These indicate location of Json.Net package in the VSIX
 
-5. Added the project template to a ProjectTemplates folder
+4. Added the project template to a ProjectTemplates folder
   - Included the template as an Asset in the VSIX project
 
-6. Build the Deploy project to create the VSIX installer
+5. Build the Deploy project to create the VSIX installer
   - Ran the installer to install on both VS2013 and VS2015RC
     + Using Community Edition for both 2013 and 2015RC
   - Unchecked option in VS to restore packages on build
@@ -31,7 +31,7 @@ Here are the steps I took to reproduct the issue:
     + Newly created app DID have packages installed for VS2013.
     + Newly created app DID NOT have packages installed for VS2015RC.
 
-7. To correct this problem, it is necessary to remove packages.config
+6. To correct this problem, it is necessary to remove packages.config
    from the project template, and from csproj and vstemplate files.
    - Also remove references to package DLL's from the csproj file.
    - Re-zipped SomeApp-NuGetWizard.zip and replaced it in the ProjectTemplates
